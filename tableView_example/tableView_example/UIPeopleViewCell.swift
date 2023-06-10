@@ -12,20 +12,18 @@ class UIPeopleViewCell: UITableViewCell {
     @IBOutlet weak var peopleName: UILabel!
     @IBOutlet weak var likeBtn: MyLikeBtn!
     
-    var cellIndex : Int = 0
+    var cellIndex : Int = 0 
 
     var likeBtnAction : ((Bool) -> Void)?
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     @IBAction func onLikeBtnClicked(_ sender: UIButton) {
-        print("heart 버튼")
         likeBtnAction?(likeBtn.isActivated)
-        print(cellIndex)
+        //print(cellIndex)
     }
     
     func updateUI(with data : Feed){
