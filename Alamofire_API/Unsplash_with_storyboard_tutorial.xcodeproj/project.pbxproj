@@ -80,6 +80,13 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		4AAC57962A3E213F00F8433D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		4ABBDCDB29E9431000EE5BC2 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +108,7 @@
 		4ABBDCE629E9431000EE5BC2 /* Unsplash_with_storyboard_tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				4AAC57962A3E213F00F8433D /* View */,
 				4AEB76182A0D4563009DF5BF /* Model */,
 				4A38BA5029F43F2700FF1131 /* API */,
 				4ABBDD0029E9AB5100EE5BC2 /* Utils */,
@@ -111,7 +119,6 @@
 				4ABBDCF029E9431100EE5BC2 /* Assets.xcassets */,
 				4ABBDCF229E9431100EE5BC2 /* LaunchScreen.storyboard */,
 				4ABBDCF529E9431100EE5BC2 /* Info.plist */,
-				4A57BA3D2A3B04180055407F /* photoTableViewCell.swift */,
 				4A57BA3E2A3B04180055407F /* photoTableViewCell.xib */,
 			);
 			path = Unsplash_with_storyboard_tutorial;
@@ -124,6 +131,7 @@
 				4ABBDCFB29E98F5C00EE5BC2 /* UserListVC.swift */,
 				4ABBDD0329E9C5A300EE5BC2 /* BaseVC.swift */,
 				4ABBDCFD29E98FB000EE5BC2 /* PhotoCollectionVC.swift */,
+				4A57BA3D2A3B04180055407F /* photoTableViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

@@ -12,17 +12,16 @@ class BaseVC : UIViewController {
             self.title = vcTitle
         }
     }
-    var photosDataArr = [Photo]()
+
     
-    
-    @IBOutlet weak var photoTableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        print("BaseVC - viewWillAppear ")
 
         //인증 실패 노티피케이션 등록
         NotificationCenter.default.addObserver(self, selector: #selector(showErrorPopup(notification:)), name: NSNotification.Name(rawValue: NOTIFICATION.API.AUTH_FAIL), object: nil)
-        
         
     }
     
@@ -52,20 +51,4 @@ class BaseVC : UIViewController {
     
 }
 
-extension BaseVC : UITableViewDelegate, UITableViewDataSource{
-    
-    //tableView cell의 object
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = photoTableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as!photoTableViewCell
-        
-        for photoIndex in 0..<(self.photosDataArr.count) {
-            cell.photoName.text = self.photosDataArr[photoIndex].username
-        }
-        return cell
-    }
-    
-    //tableView item 개수
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return photosDataArr.count;
-    }
-}
+

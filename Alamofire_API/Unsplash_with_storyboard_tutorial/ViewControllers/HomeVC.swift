@@ -16,10 +16,7 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate{
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchFilterSegment: UISegmentedControl!
     
-    var keyboardDismissTabGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: nil)
-    
-    
-    var photosData = [Photo]()
+    var keyboardDismissTabGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: HomeVC.self, action: nil)
    
     //MARK: - override method
     override func viewDidLoad() {
@@ -55,18 +52,17 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate{
             let nextUserListVC = segue.destination as! UserListVC
             guard let userInputValue = self.searchBar.text else {return}
             nextUserListVC.vcTitle = userInputValue + "🤪"
-//            nextUserListVC.userData
             
         case SEGUE_ID.PHOTO_COLLECTION_VC:
             let nextPhotoCollectionVC = segue.destination as! PhotoCollectionVC
             guard let PhotoInputValue = self.searchBar.text else {return}
             nextPhotoCollectionVC.vcTitle = PhotoInputValue + "😄"
-//            nextPhotoCollectionVC.photosDataArr = photosData
     
         default:
             print("default")
         }
     }
+    
     //view가 appear가 될때
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -90,15 +86,15 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate{
         var segueId : String = ""
         switch searchFilterSegment.selectedSegmentIndex {
         case 0:
-            segueId = "goToPhotoCollectionVC"
+            segueId = "PhotoCollectionVC"
             
         case 1:
             segueId = "goToUserListVC"
             
         default:
-            segueId = "goToPhotoCollectionVC"
+            segueId = "PhotoCollectionVC"
         }
-        
+         
         //화면이동
         self.performSegue(withIdentifier: segueId, sender: self)
         
@@ -152,20 +148,9 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate{
         
         //af로 url에 요청을 하고 response 받기
 
-      //  let url = API.BASE_URL + "search/photos/"
-        // 서치바에 값이 없다면 return
         guard let userInput = self.searchBar.text else {return}
-    
-        //키, value 형태의 딕셔너리
-      //  let queryParam = ["query" : userInput, "client_id" : API.CLIENT_ID]
         
-        //완료가 되면 비동기로 값이 들어옴
-//        AF.request(url, method: .get, parameters: queryParam)
-//            .responseJSON(completionHandler: { response in
-//                debugPrint(response)
-//        })
-        
-        var urlToCall : URLRequestConvertible?
+       // var urlToCall : URLRequestConvertible?
         
         switch searchFilterSegment.selectedSegmentIndex{
         case 0:
@@ -184,39 +169,27 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate{
                     
                     switch result {
                     case .success(let fetchedPhotos):
-                        self.photosData = fetchedPhotos
-//                        for photoIndex in 0..<(self.photosData.count) {
-//                            print("HomeVC - getPhotos.success - fetchedPhotos.count : \(self.photosData[photoIndex].username)")
-//                        }
-                        
+                        print("dsds")
+                        guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "PhotoCollectionVC") as? PhotoCollectionVC else {return}
+                        nextVC.photosDataArr = fetchedPhotos
+                        nextVC.vcTitle = userInput + "😄"
+                        nextVC.modalPresentationStyle = .fullScreen
+                        self.navigationController?.pushViewController(nextVC, animated: true)
                         
                     case .failure(let error):
                         print("HomeVC - getPhotos.failure - error : \(error.rawValue)")//enum 타입에서 값을 가져올 때 rawValue
                     }
                 })
             
-            
         case 1:
-            urlToCall = MySearchRouter.searchUsers(term: userInput)
+            print("dd")
+           // urlToCall = MySearchRouter.searchUsers(term: userInput)
             
         default:
             print("default")
         }
-        
-//        if let urlConvertible = urlToCall {
-//            MyAlamofireManager
-//                .shared //싱글턴 인스턴스
-//                .session //세션 설정
-//                .request(urlConvertible)
-//                .validate(statusCode: 200..<401)//200에서 401이전까지만
-//                .responseJSON(completionHandler: {response in
-//                    print("HomeVC - reponse : \(response)")
-//                    print("HomeVC - reponse.error : \(response.error)")
-//                })
-//        }
             
-       //화면으로 이동
-        pushVC()
+        
     }
     
     //MARK: - UISearchBar Delegate methods
@@ -232,7 +205,7 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate{
             self.view.makeToast("📣 검색 키워드를 입력해주세요 ", duration: 1.5, position: .center)
         }
         else{
-            pushVC()
+            //pushVC()
             searchBar.resignFirstResponder()
         }
     }
@@ -266,11 +239,7 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate{
             //컨트롤 + 커맨드 + 스페이스 : 이모티콘 창
             self.view.makeToast("📢 12자 까지만 입력가능합니다. ", duration: 1.5, position: .center)
         }
-//        if(inputTextCount <= 12){
-//            return true
-//        }else{
-//            return false
-//        }
+
         return inputTextCount <= 12
     }
     
