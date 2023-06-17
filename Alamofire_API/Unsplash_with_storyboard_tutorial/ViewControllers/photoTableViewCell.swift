@@ -2,7 +2,7 @@
 //  photoTableViewCell.swift
 //  Unsplash_with_storyboard_tutorial
 //
-//  Created by 최희진 on 2023/06/15.
+//  Created by 최희진 on 2023/06/18.
 //
 
 import UIKit

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "73BC8E73-E134-4FDB-8D15-37688D7174E6"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "55562097-D67B-4C44-8E08-6B7EE8009C32"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Unsplash_with_storyboard_tutorial/ViewControllers/HomeVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "HomeVC"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "55562097-D67B-4C44-8E08-6B7EE8009C32 - b4c62ae642e1c8d7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Unsplash_with_storyboard_tutorial.HomeVC.__allocating_init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Unsplash_with_storyboard_tutorial.HomeVC"
+                  moduleName = "Unsplash_with_storyboard_tutorial"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maclove/Desktop/swift-file/Alamofire_API/Unsplash_with_storyboard_tutorial/ViewControllers/HomeVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "55562097-D67B-4C44-8E08-6B7EE8009C32 - 7e428f60e9ec4660"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Unsplash_with_storyboard_tutorial.HomeVC.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Unsplash_with_storyboard_tutorial.HomeVC"
+                  moduleName = "Unsplash_with_storyboard_tutorial"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maclove/Desktop/swift-file/Alamofire_API/Unsplash_with_storyboard_tutorial/ViewControllers/HomeVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "55562097-D67B-4C44-8E08-6B7EE8009C32 - 3041a276a9f4de4b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Unsplash_with_storyboard_tutorial.HomeVC.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Unsplash_with_storyboard_tutorial.HomeVC&gt;"
+                  moduleName = "Unsplash_with_storyboard_tutorial"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maclove/Desktop/swift-file/Alamofire_API/Unsplash_with_storyboard_tutorial/ViewControllers/HomeVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "55562097-D67B-4C44-8E08-6B7EE8009C32 - 665658fcb69b9b18"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Unsplash_with_storyboard_tutorial.HomeVC.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Unsplash_with_storyboard_tutorial.HomeVC&gt;"
+                  moduleName = "Unsplash_with_storyboard_tutorial"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maclove/Desktop/swift-file/Alamofire_API/Unsplash_with_storyboard_tutorial/ViewControllers/HomeVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "55562097-D67B-4C44-8E08-6B7EE8009C32 - d0b29c177ffe6147"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Unsplash_with_storyboard_tutorial.HomeVC.__deallocating_deinit"
+                  moduleName = "Unsplash_with_storyboard_tutorial"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/maclove/Desktop/swift-file/Alamofire_API/Unsplash_with_storyboard_tutorial/ViewControllers/HomeVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
