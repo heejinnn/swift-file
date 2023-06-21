@@ -1,17 +1,15 @@
 //
-//  photoTableViewCell.swift
+//  userTableViewCell.swift
 //  Unsplash_with_storyboard_tutorial
 //
-//  Created by 최희진 on 2023/06/18.
+//  Created by 최희진 on 2023/06/21.
 //
 
 import UIKit
 
-class photoTableViewCell: UITableViewCell {
+class userTableViewCell: UITableViewCell {
 
-  
-    @IBOutlet weak var photoNameLabel: UILabel!
-    
+    @IBOutlet weak var userIDLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

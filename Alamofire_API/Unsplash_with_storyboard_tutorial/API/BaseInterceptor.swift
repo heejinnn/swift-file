@@ -11,7 +11,6 @@ import Alamofire
 //상속받는 클래스를 RequestInterceptor
 class BaseInterceptor : RequestInterceptor{
     //RequestInterceptor에서는 adapt와 retry가 존재
-    //
     
     
     //api를 request될 때 같이 호출, 마지막에 컴플레션 항상 같이 호출해야 함. 호출하지 않으면 멈춰있음.
@@ -33,9 +32,6 @@ class BaseInterceptor : RequestInterceptor{
         }catch{
             print(error)
         }
-        
-        
-    
         
         completion(.success(request))
     }

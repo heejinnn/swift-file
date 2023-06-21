@@ -7,21 +7,41 @@
 
 import UIKit
 
-class UserListVC : BaseVC  {
+class UserListVC : UIViewController  {
     
-    @IBOutlet weak var userListLabel: UILabel!
+    @IBOutlet weak var userTableView: UITableView!
     
-//    var userData : String = "" {
-//        didSet{
-//            print("UserListVC - vcTitle didSet()")
-//            self.userListLabel.text = userData
-//        }
-//    }
+    var vcTitle : String = "" {
+        didSet{
+            print("UserListVC - vcTitle didSet()")
+            self.title = vcTitle
+        }
+    }
+    
+    var userDataArr = [User]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("UserListVC - viewDidLoad() called")
+        
+        userTableView.register(UINib(nibName:"userTableViewCell",bundle: nil), forCellReuseIdentifier: "userTableViewCell")
+        print("PhotoCollectionVC - viewDidLoad() called")
+    }
+}
+
+extension UserListVC : UITableViewDelegate, UITableViewDataSource {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = userTableView.dequeueReusableCell(withIdentifier: "userTableViewCell", for: indexPath)as!userTableViewCell
+        
+        cell.userIDLabel.text = self.userDataArr[indexPath.row].id
+        
+        return cell
+        
+        
+    }
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return userDataArr.count;
     }
 }

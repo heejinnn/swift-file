@@ -42,26 +42,27 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate{
         self.searchBar.becomeFirstResponder()
     }
     
-    //화면이 넘어가기 전에 준비
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("HomeVC - prepare() called")
-        switch segue.identifier{
-            
-        case SEGUE_ID.USER_LIST_VC:
-            //다음 화면의 뷰컨트롤러 가져온다
-            let nextUserListVC = segue.destination as! UserListVC
-            guard let userInputValue = self.searchBar.text else {return}
-            nextUserListVC.vcTitle = userInputValue + "🤪"
-            
-        case SEGUE_ID.PHOTO_COLLECTION_VC:
-            let nextPhotoCollectionVC = segue.destination as! PhotoCollectionVC
-            guard let PhotoInputValue = self.searchBar.text else {return}
-            nextPhotoCollectionVC.vcTitle = PhotoInputValue + "😄"
     
-        default:
-            print("default")
-        }
-    }
+    //segue를 이용한 prepare
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        print("HomeVC - prepare() called")
+//        switch segue.identifier{
+//
+//        case SEGUE_ID.USER_LIST_VC:
+//            //다음 화면의 뷰컨트롤러 가져온다
+//            let nextUserListVC = segue.destination as! UserListVC
+//            guard let userInputValue = self.searchBar.text else {return}
+//            nextUserListVC.vcTitle = userInputValue + "🤪"
+//
+//        case SEGUE_ID.PHOTO_COLLECTION_VC:
+//            let nextPhotoCollectionVC = segue.destination as! PhotoCollectionVC
+//            guard let PhotoInputValue = self.searchBar.text else {return}
+//            nextPhotoCollectionVC.vcTitle = PhotoInputValue + "😄"
+//
+//        default:
+//            print("default")
+//        }
+//    }
     
     //view가 appear가 될때
     override func viewWillAppear(_ animated: Bool) {
@@ -82,23 +83,23 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate{
     }
     
     //MARK: - fileprivate methods
-    fileprivate func pushVC(){
-        var segueId : String = ""
-        switch searchFilterSegment.selectedSegmentIndex {
-        case 0:
-            segueId = "PhotoCollectionVC"
-            
-        case 1:
-            segueId = "goToUserListVC"
-            
-        default:
-            segueId = "PhotoCollectionVC"
-        }
-         
-        //화면이동
-        self.performSegue(withIdentifier: segueId, sender: self)
-        
-    }
+//    fileprivate func pushVC(){
+//        var segueId : String = ""
+//        switch searchFilterSegment.selectedSegmentIndex {
+//        case 0:
+//            segueId = "PhotoCollectionVC"
+//
+//        case 1:
+//            segueId = "goToUserListVC"
+//
+//        default:
+//            segueId = "PhotoCollectionVC"
+//        }
+//
+//        //화면이동
+//        self.performSegue(withIdentifier: segueId, sender: self)
+//
+//    }
     
     @objc func keyboardWillShowHandle(notification: NSNotification){
         print("HomeVC - keyboardWillShowHandle()")
@@ -169,11 +170,14 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate{
                     
                     switch result {
                     case .success(let fetchedPhotos):
-                        print("dsds")
+                        //프로퍼티를 이용하여 서로 data 주고 받기
                         guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "PhotoCollectionVC") as? PhotoCollectionVC else {return}
                         nextVC.photosDataArr = fetchedPhotos
                         nextVC.vcTitle = userInput + "😄"
-                        nextVC.modalPresentationStyle = .fullScreen
+                        
+                        //프로퍼티에 접근해서 데이터를 저장했다고 저장되는 것이 아니라
+                        //navigation으로 push해야 정상적으로 데이터가 전달된다.
+                        //nextVC.modalPresentationStyle = .fullScreen
                         self.navigationController?.pushViewController(nextVC, animated: true)
                         
                     case .failure(let error):
@@ -182,7 +186,27 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate{
                 })
             
         case 1:
-            print("dd")
+            
+            MyAlamofireManager
+                .shared
+                .getUsers(searchTerm: userInput, Completion: {[weak self] result in
+                    guard let self = self else{return}
+                    switch result {
+                    case .success(let fetchedUsers):
+                        guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "UserListVC") as? UserListVC else {return}
+                        nextVC.userDataArr = fetchedUsers
+                        nextVC.vcTitle = userInput + "😄"
+                        
+                        //프로퍼티에 접근해서 데이터를 저장했다고 저장되는 것이 아니라
+                        //navigation으로 push해야 정상적으로 데이터가 전달된다.
+                        //nextVC.modalPresentationStyle = .fullScreen
+                        self.navigationController?.pushViewController(nextVC, animated: true)
+                        
+                        
+                    case .failure(let error):
+                        print("HomeVC - getUsers().failure - error : \(error.rawValue)")//enum 타입에서 값을 가져올 때 rawValue
+                    }
+                })
            // urlToCall = MySearchRouter.searchUsers(term: userInput)
             
         default:

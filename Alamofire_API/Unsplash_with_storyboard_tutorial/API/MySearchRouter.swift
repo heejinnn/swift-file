@@ -19,19 +19,12 @@ enum MySearchRouter: URLRequestConvertible {
     }
 
     var method: HTTPMethod {
-        //return .get
         
         switch self{
         case .searchPhotos, .searchUsers:
             return .get
         }
         
-//        switch self {
-//        case .searchPhotos:
-//            return .get
-//        case .searchUsers:
-//            return .post
-//        }
     }
 
     var path: String {

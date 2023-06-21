@@ -33,6 +33,8 @@ final class MyAlamofireManager {
         session = Session(interceptor: interceptors, eventMonitors: monitors)
     }
     
+    
+    //MARK: - Alamofire methods
     //이 함수를 호출할 때는 매개변수로 searchTerm 사용
     func getPhotos(searchTerm userInput: String, Completion: @escaping (Result<[Photo],MyError>)-> Void){//이 메소드에서 사용하는 매개변수 이름은 userInput
         //컴플레션 블럭이어서 Void 넣어줌
@@ -54,13 +56,6 @@ final class MyAlamofireManager {
                     for(index, subJson): (String, JSON) in jsonArray{
                         for i in 0..<5{
                             if index == "\(i)"{
-                                //print("index: \(index), subJson: \(subJson)")
-                                
-        //                        //데이터 파싱
-        //                        let thumbnail = subJson["urls"]["thumb"].string ?? ""//urls의 thumb을 가져오겠다, 자료형 string으로 가져오고 값이 없다면 ""
-        //                        let username = subJson["user"]["username"].string ?? ""
-                                
-        //                        let createdAt = subJson["created_at"].string ?? ""
                                 
                                 guard let thumbnail = subJson["urls"]["thumb"].string,
                                       let username = subJson["user"]["username"].string,
@@ -82,6 +77,47 @@ final class MyAlamofireManager {
                     }
                     
                     
+                })
+        
+    }
+    
+    func getUsers(searchTerm userInput: String, Completion: @escaping (Result<[User],MyError>)-> Void){
+        
+        print("MyAlamofireManager - getUsers() called userInput : \(userInput) ")
+            self
+                //.shared는 싱글턴으로 가져오기 때문에 필요 x
+                .session //세션 설정
+                .request(MySearchRouter.searchUsers(term: userInput))
+                .validate(statusCode: 200..<401)//200에서 401이전까지만
+                .responseJSON(completionHandler: {response in
+                 
+                    guard let responseValue = response.value else {return}
+                    
+                    let responseJson = JSON(responseValue)
+                    let jsonArray = responseJson["results"]
+                    
+                    var users = [User]()
+                    
+                    for(index, subJson): (String, JSON) in jsonArray{
+                        for i in 0..<3{
+                            if index == "\(i)"{
+                    
+                                guard let username = subJson["username"].string,
+                                      let id = subJson["id"].string else {return}
+
+                                let userData = User(username: username, id: id)
+
+                                //배열에 넣고
+                                users.append(userData)
+                            }
+                        }
+                    }
+                    if users.count > 0 {
+                        Completion(.success(users))
+                    }else{
+                        Completion(.failure(.noContent))
+                    }
+                
                 })
         
     }

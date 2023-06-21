@@ -9,31 +9,27 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" restorationIdentifier="photoTableViewCell" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="photoTableViewCell" customModule="Unsplash_with_storyboard_tutorial" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="userTableViewCell" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="userTableViewCell" customModule="Unsplash_with_storyboard_tutorial" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pr7-gr-3q8">
-                        <rect key="frame" x="16" y="12" width="29.666666666666671" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yL9-vb-MW4">
+                        <rect key="frame" x="16" y="12" width="126" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="pr7-gr-3q8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="5Vb-WI-sCv"/>
-                    <constraint firstItem="pr7-gr-3q8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="75g-O7-I6E"/>
-                    <constraint firstAttribute="bottom" secondItem="pr7-gr-3q8" secondAttribute="bottom" constant="11" id="7EB-il-ppC"/>
-                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="photoNameLabel" destination="pr7-gr-3q8" id="DVk-I4-haM"/>
+                <outlet property="userIDLabel" destination="yL9-vb-MW4" id="xZR-Hh-ikF"/>
             </connections>
-            <point key="canvasLocation" x="138.93129770992365" y="19.718309859154932"/>
+            <point key="canvasLocation" x="80.916030534351137" y="19.718309859154932"/>
         </tableViewCell>
     </objects>
 </document>

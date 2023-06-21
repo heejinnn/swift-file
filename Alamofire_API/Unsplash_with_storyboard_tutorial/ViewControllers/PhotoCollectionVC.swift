@@ -9,6 +9,8 @@ import UIKit
 
 class PhotoCollectionVC : UIViewController {
     
+    
+    //프로퍼티(클래스에 속해 있는 변수) 생성
     var vcTitle : String = "" {
         didSet{
             print("PhotoCollectionVC - vcTitle didSet()")
@@ -28,15 +30,15 @@ class PhotoCollectionVC : UIViewController {
         print("PhotoCollectionVC - viewDidLoad() called")
     }
 }
+
 extension PhotoCollectionVC : UITableViewDelegate, UITableViewDataSource{
     
     //tableView cell의 object
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        print(photosDataArr.count)
         let cell = photoTableView.dequeueReusableCell(withIdentifier: "photoTableViewCell", for: indexPath) as!photoTableViewCell
         
-        cell.photoName.text = self.photosDataArr[indexPath.row].username
+        cell.photoNameLabel.text = self.photosDataArr[indexPath.row].username
                 
         return cell
     }

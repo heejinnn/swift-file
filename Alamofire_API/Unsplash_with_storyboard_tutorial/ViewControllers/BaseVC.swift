@@ -6,15 +6,6 @@ import UIKit
 
 class BaseVC : UIViewController {
     
-    var vcTitle : String = "" {
-        didSet{
-            print("UserListVC - vcTitle didSet()")
-            self.title = vcTitle
-        }
-    }
-
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
