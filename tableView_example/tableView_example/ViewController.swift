@@ -26,9 +26,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var dataTextField: UITextField!
     @IBOutlet weak var addBtn: UIButton!
     
-    var nameArray = [Feed(name: "나야나", id: 0, isLike: false), Feed(name: "스위프트" , id: 1, isLike: false)]
-    var filterData = [Feed]()
-    var filtered = false
+    var nameArray = [Feed(name: "나야나", id: 0, isLike: false), Feed(name: "스위프트" , id: 1, isLike: false)] //기본값
+    var filterData = [Feed]()//검색된 데이터 
+    var filtered = false //검색 여부
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -168,5 +168,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
         delete.backgroundColor = .systemRed
             
         return UISwipeActionsConfiguration(actions: [delete])
+    }
+    //셀 클릭시 회색배경에서 돌아오기
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        peopleTableView.deselectRow(at: indexPath, animated: true)
     }
 }
