@@ -33,6 +33,28 @@ class ViewController: UIViewController {
         return view
     }()
     
+    lazy var toggleColor = { () -> UISegmentedControl in
+       let toggle = UISegmentedControl()
+        // 선택안된 버튼 폰트
+        toggle.setTitleTextAttributes([
+            NSAttributedString.Key.foregroundColor: UIColor.systemGray,
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .light)
+        ], for: .normal)
+        
+        // 선택된 버튼 폰트
+        toggle.setTitleTextAttributes([
+            NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1, green: 0.6752033234, blue: 0.5361486077, alpha: 1),
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15, weight: .bold)
+        ], for: .selected)
+        
+        //segment 추가
+        toggle.insertSegment(withTitle: "red", at: 0, animated: true)
+        toggle.insertSegment(withTitle: "green", at: 1, animated: true)
+        
+        toggle.selectedSegmentIndex = 0
+       return toggle
+    }()
+    
     lazy var downButton = { (color: UIColor) -> UIButton in
         let btn = UIButton(type: .system)
         btn.backgroundColor = color
@@ -55,11 +77,13 @@ class ViewController: UIViewController {
         return btn
     }
     
+    var segmentedIndex: Int? = nil
     
-    
-    var greenBoxTopNSLayoutConstraint : NSLayoutConstraint? = nil
-    
+    var redBoxTopConstraint : Constraint? = nil
     var greenBoxTopConstraint : Constraint? = nil
+    
+    var redOffset = 0
+    var greenOffset = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +93,7 @@ class ViewController: UIViewController {
         self.view.addSubview(greenBox)
         self.view.addSubview(redBox)
         self.view.addSubview(btnBox)
+        self.view.addSubview(toggleColor)
         
         let myDownBtn = downButton(.darkGray)
         btnBox.addSubview(myDownBtn)
@@ -84,6 +109,7 @@ class ViewController: UIViewController {
             make.width.height.equalTo(100)
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.centerX.equalToSuperview()
+            self.redBoxTopConstraint = make.top.equalTo(self.view.snp.top).offset(20).constraint
         }
         
         myDownBtn.snp.makeConstraints { (make) in
@@ -92,7 +118,7 @@ class ViewController: UIViewController {
             make.bottom.equalTo(yellowBox.safeAreaLayoutGuide.snp.bottom)
         }
         
-        myDownBtn.addTarget(self, action: #selector(moveGreenBoxDown), for: .touchUpInside)
+        myDownBtn.addTarget(self, action: #selector(moveBoxDown), for: .touchUpInside)
         
         
         myUpBtn.snp.makeConstraints{(make) in
@@ -101,30 +127,70 @@ class ViewController: UIViewController {
             make.bottom.equalTo(btnBox.safeAreaLayoutGuide.snp.bottom)
             make.left.equalTo(myDownBtn.snp.right).offset(20)
         }
-        myUpBtn.addTarget(self, action: #selector(moveGreenBoxUp), for: .touchUpInside)
+        myUpBtn.addTarget(self, action: #selector(moveBoxUp), for: .touchUpInside)
 
         greenBox.snp.makeConstraints { (make) in
             make.width.height.equalTo(100)
             make.centerX.equalToSuperview()
-            self.greenBoxTopConstraint = make.top.equalTo(redBox.snp.bottom).offset(20).constraint
+            self.greenBoxTopConstraint = make.top.equalTo(self.view.snp.top).offset(20).constraint
         }
         btnBox.snp.makeConstraints{(make) in
             make.width.equalTo(220)
-            make.height.equalTo(100)
+            make.height.equalTo(70)
             make.bottom.equalTo(yellowBox.safeAreaLayoutGuide.snp.bottom)
             make.centerX.equalTo(yellowBox)
         }
         
+        toggleColor.snp.makeConstraints{(make) in
+            make.width.equalTo(120)
+            make.height.equalTo(30)
+            make.bottom.equalTo(btnBox.safeAreaLayoutGuide.snp.top)
+            make.centerX.equalTo(yellowBox)
+        }
+        toggleColor.addTarget(self, action: #selector(toggleSwitch), for: .valueChanged)
         
     }
     
-    var offset = 0
+   
     
-    @objc fileprivate func moveGreenBoxDown(){
-        offset += 40
-        print("ViewController - moveGreenBoxDown() called / offset: \(offset)")
+    
+    //MARK: - methods
+    @objc fileprivate func toggleSwitch(){
+        let index = CGFloat(toggleColor.selectedSegmentIndex)
+        segmentedIndex = Int(index)
+        if redOffset == greenOffset{
+            if segmentedIndex == 0 {
+                greenBox.isHidden = true
+                redBox.isHidden = false
+            }
+            else {
+                redBox.isHidden = true
+                greenBox.isHidden = false
+            }
+        }
+        else{
+            greenBox.isHidden = false
+            redBox.isHidden = false
+        }
+    }
+    
+    @objc fileprivate func moveBoxDown(){
+        print("ViewController - moveBoxDown() called / offset: \(greenOffset) - \(redOffset)")
         
-        self.greenBoxTopConstraint?.update(offset: offset)
+        switch(segmentedIndex){
+        case 0:
+            redOffset += 40
+            self.redBoxTopConstraint?.update(offset: redOffset)
+            
+            break
+        case 1:
+            greenOffset += 40
+            self.greenBoxTopConstraint?.update(offset: greenOffset)
+            
+        default:
+            redOffset += 40
+            self.redBoxTopConstraint?.update(offset: redOffset)
+        }
         
         UIViewPropertyAnimator(duration: 0.2, curve: .easeOut, animations: {
             self.view.layoutIfNeeded()
@@ -132,11 +198,23 @@ class ViewController: UIViewController {
                 
     }
     
-    @objc fileprivate func moveGreenBoxUp(){
-        offset -= 40
-        print("ViewController - moveGreenBoxUp() called / offset: \(offset)")
+    @objc fileprivate func moveBoxUp(){
+        print("ViewController - moveBoxUp() called / offset: \(greenOffset) - \(redOffset)")
         
-        self.greenBoxTopConstraint?.update(offset: offset)
+        
+        switch(segmentedIndex){
+        case 0:
+            redOffset -= 40
+            self.redBoxTopConstraint?.update(offset: redOffset)
+            break
+        case 1:
+            greenOffset -= 40
+            self.greenBoxTopConstraint?.update(offset: greenOffset)
+            
+        default:
+            redOffset -= 40
+            self.redBoxTopConstraint?.update(offset: redOffset)
+        }
         
         UIViewPropertyAnimator(duration: 0.2, curve: .easeOut, animations: {
             self.view.layoutIfNeeded()
