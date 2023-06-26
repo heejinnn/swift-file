@@ -16,7 +16,7 @@
 		4AE521E62A49C97100B6A95C /* DummyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE521E52A49C97100B6A95C /* DummyAPI.swift */; };
 		4AE521EA2A49C99F00B6A95C /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE521E92A49C99F00B6A95C /* People.swift */; };
 		4AE521EC2A49C9B600B6A95C /* PeopleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE521EB2A49C9B600B6A95C /* PeopleListViewModel.swift */; };
-		4AE521EF2A49CD7700B6A95C /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE521EE2A49CD7700B6A95C /* PeopleTableViewCell.swift */; };
+		4AE521F32A49EA7800B6A95C /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE521F22A49EA7800B6A95C /* PeopleTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +31,7 @@
 		4AE521E52A49C97100B6A95C /* DummyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyAPI.swift; sourceTree = "<group>"; };
 		4AE521E92A49C99F00B6A95C /* People.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
 		4AE521EB2A49C9B600B6A95C /* PeopleListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListViewModel.swift; sourceTree = "<group>"; };
-		4AE521EE2A49CD7700B6A95C /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
+		4AE521F22A49EA7800B6A95C /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +114,7 @@
 		4AE521ED2A49CD5900B6A95C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				4AE521EE2A49CD7700B6A95C /* PeopleTableViewCell.swift */,
+				4AE521F22A49EA7800B6A95C /* PeopleTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -196,7 +196,7 @@
 				4AE521CF2A49C78800B6A95C /* SceneDelegate.swift in Sources */,
 				4AE521EA2A49C99F00B6A95C /* People.swift in Sources */,
 				4AE521E62A49C97100B6A95C /* DummyAPI.swift in Sources */,
-				4AE521EF2A49CD7700B6A95C /* PeopleTableViewCell.swift in Sources */,
+				4AE521F32A49EA7800B6A95C /* PeopleTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

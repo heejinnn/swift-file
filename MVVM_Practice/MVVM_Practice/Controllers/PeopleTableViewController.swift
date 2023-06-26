@@ -20,12 +20,12 @@ class PeopleTableViewController: UITableViewController {
         private func setup() {
             self.navigationController?.navigationBar.prefersLargeTitles = true
 
-            let url = URL(string: "https://dummy.restapiexample.com/api/v1/employees")!
+            let url = URL(string: "https://newsapi.org/v2/top-headlines?country=us&apiKey=e9b514c39c5f456db8ed4ecb693b0040")!
             DummyAPI().getPeoples(url: url) { //1
                 (peoples) in
 
                 if let peoples = peoples {
-                    self.peopleListVM = PeopleListViewModel(peoples: peoples)
+                    self.peopleListVM = PeopleListViewModel(articles: peoples)
                 }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -49,8 +49,8 @@ extension PeopleTableViewController {
         else {fatalError("no matched articleTableViewCell identifier")}
 
         let peopleVM = self.peopleListVM.peopleAtIndex(indexPath.row) //3
-        cell.nameLabel?.text = peopleVM.employeeName
-        cell.idLabel?.text = "\(peopleVM.id)"
+        cell.nameLabel?.text = peopleVM.author
+        cell.titleLabel?.text = peopleVM.title
         return cell
     }
 

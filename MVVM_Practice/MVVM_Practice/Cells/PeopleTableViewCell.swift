@@ -2,17 +2,15 @@
 //  PeopleTableViewCell.swift
 //  MVVM_Practice
 //
-//  Created by 최희진 on 2023/06/26.
+//  Created by 최희진 on 2023/06/27.
 //
 
 import UIKit
 
-
 class PeopleTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,3 +23,4 @@ class PeopleTableViewCell: UITableViewCell {
     }
 
 }
+

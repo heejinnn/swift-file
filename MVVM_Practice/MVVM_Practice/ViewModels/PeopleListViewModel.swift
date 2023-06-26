@@ -8,7 +8,7 @@
 import Foundation
 
 struct PeopleListViewModel {
-    let peoples: [People]
+    let articles: [People]
     
     
 }
@@ -18,11 +18,11 @@ extension PeopleListViewModel{
     }
 
     func numberOfRowsInSection(_ section: Int) -> Int {
-        return self.peoples.count
+        return self.articles.count
     }
 
     func peopleAtIndex(_ index: Int) -> PeopleViewModel {
-        let people = self.peoples[index]
+        let people = self.articles[index]
         return PeopleViewModel(people)
     }
 }
@@ -38,13 +38,13 @@ extension PeopleViewModel {
 }
 
 extension PeopleViewModel {
-    var id: Int? {
-        return self.people.id
+    var title: String? {
+        return self.people.title
     }
-    var employeeName: String? {
-        return self.people.peopleName
+    var author: String? {
+        return self.people.author
     }
-    var employeeAge: Int? {
-        return self.people.peopleAge
-    }
+//    var employee_age: Int? {
+//        return self.people.employee_age
+//    }
 }

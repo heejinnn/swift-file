@@ -12,17 +12,19 @@ class DummyAPI {
         
         URLSession.shared.dataTask(with: url) {
             (data, response, error) in
+            
             if let error = error {
-                print(error.localizedDescription)
-                completion(nil)
+                print(error)
+                //completion(nil)
             }
+           
             else if let data = data {
                 let peopleList = try? JSONDecoder().decode(PeopleList.self, from: data)
                 print(peopleList)
                 if let peopleList = peopleList {
-                    completion(peopleList.peoples)
+                    completion(peopleList.articles)
                 }
-                print(peopleList?.peoples)
+                print(peopleList?.articles)
                 
             }
             

@@ -7,13 +7,27 @@
 
 import Foundation
 
+//struct PeopleList: Decodable {
+//    let peoples: [People]
+//}
+//
+//struct People: Decodable {
+//
+//    let id: Int?
+//    let peopleName: String?
+//    let peopleAge: Int?
+//}
+
+
+import Foundation
+
 struct PeopleList: Decodable {
-    let peoples: [People]
+    let articles: [People]
 }
 
 struct People: Decodable {
  
-    let id: Int?
-    let peopleName: String?
-    let peopleAge: Int?
+    let title: String?
+    let author: String?
+    //let employee_age: Int?
 }
