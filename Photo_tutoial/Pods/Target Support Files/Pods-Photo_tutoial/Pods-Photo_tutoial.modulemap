@@ -1,0 +1,6 @@
+framework module Pods_Photo_tutoial {
+  umbrella header "Pods-Photo_tutoial-umbrella.h"
+
+  export *
+  module * { export * }
+}
